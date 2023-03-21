@@ -1,0 +1,239 @@
+Server Creation
+==============
+
+	1) Create seperate bankServer file
+
+	2) create package.json with cmd npm init
+
+	3) npm i express - locally install express framework node_modules and package-lock
+
+	4) open file in vscode
+
+server side technology -- node (async in nature) - resolves mutiple requests
+
+1) requests are sent as api (connect server and client)
+
+2) HTTP request:-
+-----------------
+
+		parts:-
+
+				header			body
+				secret data 	data.json
+
+		types:-
+
+				1) GET		:- read
+				2) POST		:- create
+				3) PUT		:- complete updation
+				4) PATCH	:- partial updation
+				5) DELETE	:- remove
+
+
+server response status code
+===========================
+
+		100 - Information
+		200	- Success *
+		300 - Redirection
+		400 - Client Error
+		500 - Server Side Error *
+
+
+Server creation Steps :-
+========================
+
+		1) Import Express
+		2) Create app using server (Express server)
+		3) Port number assignment -- 3000 series (client on 4200)
+		4) Resolve http requests
+
+Nodemon
+-------
+
+		-	if we use server using node recompilation wont work
+			instead we use another server called Nodemon
+
+		- npm i -g nodemon
+
+
+Methods:-
+=========
+
+	express.json() - to convert all request data in express from json to js
+
+	.json(data)		- to convert and send js to json as response to server
+
+	.status(obj.statusCode)	- To change the respone status code of http request
+
+	.post(),.put(),.patch(),.put(),.delete() - basic http requests
+
+
+* TOKEN GENERATION IN SERVER (JWT- JSON WEB TOKEN)
+===================================================
+
+		INSTALLation
+			 - npm install(i) jsonwebtoken
+
+			 library - jsonwebtoken
+
+			 method  --  sign() - method used to generate wweb token
+			 		   verify() - used to verify json web token
+
+			 const jwt = require('jsonwebtoken')
+
+			 jwt.sign({primarykey},'secrettokenname')
+
+
+	token verification:-
+	--------------------
+
+token verification is done using MIDDLEWARES
+
+	- MIDDLEWARES have the capacity to control server requests
+
+	-MIDDLEWARE is a function with 3 arguements
+
+				- request
+				- respone
+				- next
+
+		- 2 types of MIDDLEWARES :-
+
+				1- Application Specific MIDDLEWARE 
+						-- works before all the requests in the server.
+				2- Router Specific MIDDLEWARE  
+						-- works specific to router/http request specified
+
+
+Handling Runtime Errors in JavaScript
+=====================================
+
+
+		try except block concept is used to rectify runtime errors , the error prone code is provided inside the 
+		try block and error response is provided in the catch block, try block runs when there is an error or not , 
+		catch block works only in case of an error.
+
+				try
+					error causing code
+
+				catch
+					error solution
+
+
+
+**** MongoDB ****
+==================
+
+		- mongodb is a no sql database
+
+		- install mongodb
+
+
+	mongoDb shell commands
+	----------------------
+
+			- CRUD operations
+
+				- show dbs 				 						=> to see databases
+				- use (dbName)				    				=> to open the required database
+				- show collections		 						=> to collections inside the required database
+				- db.(collectionName).find()					=> to read data in a specifieed collectionName
+				- db.(collectionName).findOne({acno:1000})		=> to read single data in a collection of specific user
+				- db.(collectionName).insertOne({json obj})		=> to insert an obj into the database
+
+				- db.(collectionName).updateOne({uname:anu},($set:{uname:anu v})) = > uppdate exisyting data (json or js)
+
+				- db.(collectionName).deleteOne({"acno":1000})  => to delete a user from db
+
+
+				eg:-
+
+					db.(collectionName).find({balance:{gt:4000}})
+
+							this query would return users with balance greater than 4000
+
+			
+			- Query Selection Operators 
+
+						-	$eq : Values are equal.
+						-	$ne : Values are not equal.
+						-	$gt : Value is greater than another value.
+						-	$gte : Value is greater than or equal to another value.
+						-	$lt : Value is less than another value.
+						-	$lte : Value is less than or equal to another value.
+						-	$in : Value is matched within an array.
+
+
+		register - insertOne
+		login 	 - findOne
+		with/dep - updateOne
+		transaction - findOne
+		delete   - deleteOne
+
+	
+	Server Database Integration
+	===========================
+
+			database - 27017
+			server   - 3001
+
+						- both are running on different ports
+
+			- Mongoose is the library used for mongoDB server Integration
+
+				npm install mongoose
+
+		Steps:-
+		-------
+
+				1) Import Mongoose to directory
+
+				2) State a connection string to integrate
+
+				3) Define a model(class) for our colleciton 
+
+				4) Export module create ie. schema
+
+		mongoose.connect('mongodb://localhost:27017/bankServer',{useNewUrlParser:true})
+
+		use new url parese would rectify any parser issues in the db
+
+		mongoose Methods:
+		-----------------
+
+		1) mongoose.connect
+
+		2) mongoose.model
+
+
+FrontEnd Server Integration
+============================
+
+		library used to integrate frontend and server
+
+		cors - Cross Origin Resource Sharing
+
+		frontend port 4200
+		backend port  3001
+
+		Steps:-
+		=======
+
+			1) import cors
+
+					const cors = require('cors')
+
+			2) specify connection string
+
+
+					app.use(cors({origin:'http://localhost:4200'}))
+
+
+
+
+
+
+
+
+
